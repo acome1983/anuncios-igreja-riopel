@@ -37,22 +37,21 @@
             overflow: hidden;
         }
 
-        .church-logo {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
-            background: white;
-            border-radius: 50%;
-            padding: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjRkZGRkZGIi8+Cjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJCNEM5QiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SUdSRUpBPC90ZXh0Pgo8dGV4dCB4PSI1MCIgeT0iNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0iI0ZGN0EwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QVNTRU1CTEVJQTwvdGV4dD4KPC9zdmc+');
-            background-size: 80px 80px;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
+.church-logo {
+    width: 200px;
+    height: 150px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.church-logo img {
+    max-width: 200px;
+    max-height: 150px;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+}
 
         .header::before {
             content: '';
@@ -288,8 +287,8 @@
 
     <div class="container">
         <div class="header">
-           <div class="church-logo">
-    <img src="logo-igreja.png" alt="Logo Igreja" style="width: 80px; height: 80px; object-fit: contain;">
+     <div class="church-logo">
+    <img src="logo-igreja.png" alt="Logo Igreja">
 </div>
             <div class="church-name">IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS</div>
             <div class="church-name">CONGREGAÇÃO DA RIOPEL</div>
