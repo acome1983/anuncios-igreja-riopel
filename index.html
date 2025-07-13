@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anúncios - Ministério Baixa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2B4C9B 0%, #FF7A00 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2B4C9B 0%, #1A3A7A 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .church-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 50%;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjRkZGRkZGIi8+Cjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJCNEM5QiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SUdSRUpBPC90ZXh0Pgo8dGV4dCB4PSI1MCIgeT0iNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0iI0ZGN0EwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QVNTRU1CTEVJQTwvdGV4dD4KPC9zdmc+');
+            background-size: 80px 80px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .church-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #FFD700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .month-section {
+            padding: 30px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .month-section:last-child {
+            border-bottom: none;
+        }
+
+        .month-title {
+            font-size: 2em;
+            color: #2B4C9B;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .month-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #2B4C9B, #FF7A00);
+            border-radius: 2px;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #2B4C9B;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(43,76,155,0.1) 0%, transparent 70%);
+            transform: translate(30px, -30px);
+        }
+
+        .event-date {
+            display: inline-block;
+            background: linear-gradient(135deg, #2B4C9B, #FF7A00);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .event-title {
+            font-size: 1.4em;
+            color: #2B4C9B;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .event-details {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .event-location {
+            background: #E8F1FF;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border-left: 3px solid #2B4C9B;
+            margin-bottom: 10px;
+        }
+
+        .event-theme {
+            background: #FFF4E8;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-style: italic;
+            color: #2B4C9B;
+            border-left: 3px solid #FF7A00;
+        }
+
+        .verse-reference {
+            font-size: 0.9em;
+            color: #FF7A00;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .special-event {
+            border-left-color: #FF7A00;
+            background: linear-gradient(135deg, #FFF4E8 0%, #FFE8CC 100%);
+        }
+
+        .special-event .event-date {
+            background: linear-gradient(135deg, #FF7A00, #E65A00);
+        }
+
+        .footer {
+            background: #2B4C9B;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .footer p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .countdown {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 15px;
+            margin-left: 10px;
+            font-size: 0.8em;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .month-section {
+                padding: 20px;
+            }
+            
+            .event-card {
+                padding: 20px;
+            }
+        }
+
+        .floating-icons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .icon-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.1);
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-icons">
+        <button class="icon-btn" onclick="shareContent()" title="Compartilhar">📱</button>
+        <button class="icon-btn" onclick="window.print()" title="Imprimir">🖨️</button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="church-logo"></div>
+            <div class="church-name">IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS</div>
+            <div class="church-name">CONGREGAÇÃO DA RIOPEL</div>
+            <h1>📢 Anúncios Oficiais</h1>
+            <p>Ministério Baixa - Marracuene para Cristo</p>
+        </div>
+
+        <div class="month-section">
+            <h2 class="month-title">🌟 JULHO 2025</h2>
+            
+            <div class="event-card">
+                <div class="event-date">12 DE JULHO - SÁBADO</div>
+                <div class="event-title">🎓 Capacitação para Jovens</div>
+                <div class="event-location">📍 Congregação da Riopel - 8h00</div>
+                <div class="event-details">
+                    <strong>Requisitos:</strong> Mínimo 10 jovens por congregação com conhecimento básico de informática.
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">19 DE JULHO - SÁBADO</div>
+                <div class="event-title">📖 Estudo para Jovens</div>
+                <div class="event-location">📍 Congregação de Zimpeto - 8h00</div>
+                <div class="event-theme">
+                    🎯 Tema: "Escolha Certa"
+                    <div class="verse-reference">Eclesiastes 11:9</div>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">20 DE JULHO - DOMINGO</div>
+                <div class="event-title">🚀 Campanha de Evangelização</div>
+                <div class="event-location">📍 Sub Congregação de Agostinho Neto</div>
+                <div class="event-details">
+                    <strong>Ponto de Encontro:</strong> Entrada do Agostinho Neto<br>
+                    <strong>Participação:</strong> 5 irmãos ou mais por congregação<br>
+                    <em>Mais informações serão partilhadas</em>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">27 DE JULHO - DOMINGO</div>
+                <div class="event-title">👥 Tafula dos Papás</div>
+                <div class="event-location">📍 Congregação de Kumbeza - 8h00</div>
+                <div class="event-details">
+                    <em>Tema por anunciar</em>
+                </div>
+            </div>
+
+            <div class="event-card special-event">
+                <div class="event-date">30 JUL - 1 AGO</div>
+                <div class="event-title">🙏 Consagração de 72 Horas</div>
+                <div class="event-location">📍 Todas as congregações do Ministério Baixa</div>
+                <div class="event-theme">
+                    ✨ Tema: "Renovação do coração e da mente pelo Espírito Santo"
+                    <div class="verse-reference">Romanos 12:2 | Gálatas 5:22-23</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="month-section">
+            <h2 class="month-title">⭐ AGOSTO 2025</h2>
+            
+            <div class="event-card">
+                <div class="event-date">9 DE AGOSTO - SÁBADO</div>
+                <div class="event-title">👩‍🦰 Encontro de Aconselhamento - Raparigas</div>
+                <div class="event-location">📍 Congregação da Riopel - 8h00</div>
+                <div class="event-theme">
+                    💪 Tema: "Resiliência e Superação"
+                    <div class="verse-reference">Daniel 1-6</div>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">9 DE AGOSTO - SÁBADO</div>
+                <div class="event-title">👨‍🦱 Encontro de Aconselhamento - Rapazes</div>
+                <div class="event-location">📍 Congregação de Bobole A - 8h00</div>
+                <div class="event-theme">
+                    💪 Tema: "Resiliência e Superação"
+                    <div class="verse-reference">Daniel 1-6</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>🤝 Juntos na Seara</h3>
+            <p>Marracuene para Cristo</p>
+            <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">
+                📅 Atualizado em: <span id="currentDate"></span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Atualizar data atual
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('pt-BR');
+
+        // Função para compartilhar
+        function shareContent() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Anúncios - Ministério Baixa',
+                    text: 'Confira os próximos eventos da nossa igreja!',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback para dispositivos sem suporte
+                const text = `🔔 Anúncios - Ministério Baixa\n\nConfira os próximos eventos da nossa igreja!\n\n${window.location.href}`;
+                
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert('Link copiado! Cole no WhatsApp para compartilhar.');
+                    });
+                } else {
+                    alert('Copie este link para compartilhar:\n\n' + window.location.href);
+                }
+            }
+        }
+
+        // Animação de entrada dos cartões
+        const cards = document.querySelectorAll('.event-card');
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.6s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+
+        // Destacar eventos próximos
+        const today = new Date();
+        const eventDates = [
+            { date: new Date('2025-07-12'), element: cards[0] },
+            { date: new Date('2025-07-19'), element: cards[1] },
+            { date: new Date('2025-07-20'), element: cards[2] },
+            { date: new Date('2025-07-27'), element: cards[3] },
+            { date: new Date('2025-07-30'), element: cards[4] }
+        ];
+
+        eventDates.forEach(event => {
+            const timeDiff = event.date - today;
+            const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+            
+            if (daysDiff <= 7 && daysDiff > 0) {
+                event.element.style.border = '2px solid #ff6b6b';
+                event.element.style.background = 'linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%)';
+                
+                const dateElement = event.element.querySelector('.event-date');
+                dateElement.innerHTML += `<span class="countdown">Em ${daysDiff} dia${daysDiff > 1 ? 's' : ''}</span>`;
+            }
+        });
+    </script>
+</body>
+</html>
