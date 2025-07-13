@@ -37,21 +37,21 @@
             overflow: hidden;
         }
 
-.church-logo {
-    width: 200px;
-    height: 150px;
-    margin: 0 auto 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .church-logo {
+            width: 200px;
+            height: 150px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.church-logo img {
-    max-width: 200px;
-    max-height: 150px;
-    object-fit: contain;
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
-}
+        .church-logo img {
+            max-width: 200px;
+            max-height: 150px;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+        }
 
         .header::before {
             content: '';
@@ -148,6 +148,108 @@
             height: 100px;
             background: radial-gradient(circle, rgba(43,76,155,0.1) 0%, transparent 70%);
             transform: translate(30px, -30px);
+        }
+
+        /* ESTILO ESPECIAL PARA ORAÇÃO DE 24H */
+        .prayer-24h {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF7A00 100%);
+            border: none;
+            border-left: 8px solid #FF4500;
+            color: #1A3A7A;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(255, 122, 0, 0.3);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 20px 40px rgba(255, 122, 0, 0.3); }
+            to { box-shadow: 0 25px 50px rgba(255, 122, 0, 0.5); }
+        }
+
+        .prayer-24h::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.3) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .prayer-24h::after {
+            content: '✨';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+        }
+
+        .prayer-24h .event-date {
+            background: linear-gradient(135deg, #FF4500, #8B0000);
+            font-size: 1.1em;
+            padding: 12px 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: pulse-date 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-date {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .prayer-24h .event-title {
+            font-size: 2em;
+            color: #8B0000;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 15px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .prayer-countdown {
+            background: rgba(139, 0, 0, 0.1);
+            border: 2px solid #8B0000;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+            color: #8B0000;
+            font-size: 1.2em;
+        }
+
+        .prayer-details {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #FF4500;
+        }
+
+        .urgent-banner {
+            background: linear-gradient(90deg, #FF4500, #FFD700, #FF4500);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: banner-slide 3s ease-in-out infinite;
+        }
+
+        @keyframes banner-slide {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .event-date {
@@ -252,6 +354,10 @@
             .event-card {
                 padding: 20px;
             }
+
+            .prayer-24h .event-title {
+                font-size: 1.5em;
+            }
         }
 
         .floating-icons {
@@ -286,12 +392,16 @@
     </div>
 
     <div class="container">
+        <div class="urgent-banner">
+            🔥 EVENTO ESPECIAL AMANHÃ: ORAÇÃO DE 24 HORAS - NÃO PERCA! 🔥
+        </div>
+
         <div class="header">
-     <div class="church-logo">
-    <img src="logo-igreja.png" alt="Logo Igreja">
-</div>
-            <div class="church-name"> </div>
-            <div class="church-name"></div>
+            <div class="church-logo">
+                <img src="logo-igreja.png" alt="Logo Igreja">
+            </div>
+            <div class="church-name">IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS</div>
+            <div class="church-name">CONGREGAÇÃO DA RIOPEL</div>
             <h1>📢 Anúncios Oficiais</h1>
             <p>Ministério Baixa - Marracuene para Cristo</p>
         </div>
@@ -299,12 +409,25 @@
         <div class="month-section">
             <h2 class="month-title">🌟 JULHO 2025</h2>
             
-            <div class="event-card">
-                <div class="event-date">12 DE JULHO - SÁBADO</div>
-                <div class="event-title">🎓 Capacitação para Jovens</div>
-                <div class="event-location">📍 Congregação da Riopel - 8h00</div>
-                <div class="event-details">
-                    <strong>Requisitos:</strong> Mínimo 10 jovens por congregação com conhecimento básico de informática.
+            <!-- ORAÇÃO DE 24H - DESTACADA -->
+            <div class="event-card prayer-24h">
+                <div class="event-date">14-15 JULHO - SEGUNDA/TERÇA</div>
+                <div class="event-title">🙏 ORAÇÃO DE 24 HORAS</div>
+                
+                <div class="prayer-countdown">
+                    ⏰ DAS 15H00 DE SEGUNDA ATÉ 15H00 DE TERÇA
+                </div>
+                
+                <div class="prayer-details">
+                    <strong>📍 Local:</strong> Congregação da Riopel<br>
+                    <strong>⏰ Início:</strong> 15h00 do dia 14 (Segunda-feira)<br>
+                    <strong>⏰ Término:</strong> 15h00 do dia 15 (Terça-feira)<br>
+                    <strong>🎯 Duração:</strong> 24 horas contínuas de oração
+                </div>
+                
+                <div class="event-theme">
+                    ✨ <strong>Tema:</strong> "Se o Senhor não edificar a casa, em vão trabalham os que a edificam"
+                    <div class="verse-reference">Salmo 127:1</div>
                 </div>
             </div>
 
@@ -391,12 +514,12 @@
             if (navigator.share) {
                 navigator.share({
                     title: 'Anúncios - Ministério Baixa',
-                    text: 'Confira os próximos eventos da nossa igreja!',
+                    text: 'Confira os próximos eventos da nossa igreja! ORAÇÃO DE 24H AMANHÃ!',
                     url: window.location.href
                 });
             } else {
                 // Fallback para dispositivos sem suporte
-                const text = `🔔 Anúncios - Ministério Baixa\n\nConfira os próximos eventos da nossa igreja!\n\n${window.location.href}`;
+                const text = `🔔 Anúncios - Ministério Baixa\n\n🔥 ORAÇÃO DE 24H AMANHÃ! 🔥\n\nConfira todos os eventos:\n\n${window.location.href}`;
                 
                 if (navigator.clipboard) {
                     navigator.clipboard.writeText(text).then(() => {
@@ -418,13 +541,13 @@
                 card.style.transition = 'all 0.6s ease';
                 card.style.opacity = '1';
                 card.style.transform = 'translateY(0)';
-            }, index * 100);
+            }, index * 150);
         });
 
         // Destacar eventos próximos
         const today = new Date();
         const eventDates = [
-            { date: new Date('2025-07-12'), element: cards[0] },
+            { date: new Date('2025-07-14'), element: document.querySelector('.prayer-24h') },
             { date: new Date('2025-07-19'), element: cards[1] },
             { date: new Date('2025-07-20'), element: cards[2] },
             { date: new Date('2025-07-27'), element: cards[3] },
@@ -432,15 +555,19 @@
         ];
 
         eventDates.forEach(event => {
-            const timeDiff = event.date - today;
-            const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-            
-            if (daysDiff <= 7 && daysDiff > 0) {
-                event.element.style.border = '2px solid #ff6b6b';
-                event.element.style.background = 'linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%)';
+            if (event.element) {
+                const timeDiff = event.date - today;
+                const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
                 
-                const dateElement = event.element.querySelector('.event-date');
-                dateElement.innerHTML += `<span class="countdown">Em ${daysDiff} dia${daysDiff > 1 ? 's' : ''}</span>`;
+                if (daysDiff <= 7 && daysDiff > 0 && !event.element.classList.contains('prayer-24h')) {
+                    event.element.style.border = '2px solid #ff6b6b';
+                    event.element.style.background = 'linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%)';
+                    
+                    const dateElement = event.element.querySelector('.event-date');
+                    if (dateElement) {
+                        dateElement.innerHTML += `<span class="countdown">Em ${daysDiff} dia${daysDiff > 1 ? 's' : ''}</span>`;
+                    }
+                }
             }
         });
     </script>
