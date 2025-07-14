@@ -751,26 +751,26 @@ Congregação da Riopel
 ⛪ Cultos permanentes semanais
 🤲 Acção social em curso
 
-📞 Informações: 879791611 | 846031855
-🤝 Ministério Baixa - Marracuene para Cristo
+📞 Para aceder à página completa:
+Contacte: 879791611 | 846031855
 
-📱 Acesse a página completa dos anúncios:`;
+🤝 Ministério Baixa - Marracuene para Cristo`;
 
     if (navigator.share) {
+        // REMOVIDO o 'url' - assim não mostra link nenhum!
         navigator.share({
             title: 'Anúncios Igreja Assembleia de Deus - Riopel',
-            text: elegantMessage,
-            url: window.location.href
+            text: elegantMessage
+            // SEM url: window.location.href
         });
     } else {
-        const messageWithLink = elegantMessage + `\n\n${window.location.href}\n\n(Copie e cole este link no seu navegador)`;
-        
+        // Para desktop - também sem link visível
         if (navigator.clipboard) {
-            navigator.clipboard.writeText(messageWithLink).then(() => {
-                alert('📋 Mensagem copiada!\n\nCole no WhatsApp, Telegram ou SMS para partilhar.');
+            navigator.clipboard.writeText(elegantMessage).then(() => {
+                alert('📋 Mensagem copiada!\n\nAs pessoas devem contactar os números para aceder à página.');
             });
         } else {
-            alert('📋 Copie esta mensagem:\n\n' + messageWithLink);
+            alert('📋 Copie esta mensagem:\n\n' + elegantMessage);
         }
     }
 }
@@ -983,20 +983,20 @@ Congregação da Riopel
         }
 
         // Adicionar navegação rápida (opcional)
-        function addQuickNavigation() {
-            const nav = document.createElement('div');
-            nav.innerHTML = `
-                <div style="position: fixed; left: 20px; top: 50%; transform: translateY(-50%); z-index: 1000;">
-                    <div style="background: rgba(255,255,255,0.9); border-radius: 25px; padding: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-                        <div style="font-size: 1.2em; margin: 5px 0; cursor: pointer;" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Topo">🔝</div>
-                        <div style="font-size: 1.2em; margin: 5px 0; cursor: pointer;" onclick="document.querySelector('.prayer-24h').scrollIntoView({behavior: 'smooth'})" title="Oração 24h">🙏</div>
-                        <div style="font-size: 1.2em; margin: 5px 0; cursor: pointer;" onclick="document.querySelector('.permanent-events').scrollIntoView({behavior: 'smooth'})" title="Eventos Permanentes">📅</div>
-                        <div style="font-size: 1.2em; margin: 5px 0; cursor: pointer;" onclick="document.querySelector('.footer').scrollIntoView({behavior: 'smooth'})" title="Contactos">📞</div>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(nav);
-        }
+ function addQuickNavigation() {
+    const nav = document.createElement('div');
+    nav.innerHTML = `
+        <div style="position: fixed; left: 10px; top: 50%; transform: translateY(-50%); z-index: 1000;">
+            <div style="background: rgba(255,255,255,0.95); border-radius: 25px; padding: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: 2px solid #2B4C9B;">
+                <div style="font-size: 1.4em; margin: 8px 0; cursor: pointer; text-align: center; padding: 5px;" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Topo">🔝</div>
+                <div style="font-size: 1.4em; margin: 8px 0; cursor: pointer; text-align: center; padding: 5px;" onclick="document.querySelector('.prayer-24h').scrollIntoView({behavior: 'smooth'})" title="Oração 24h">🙏</div>
+                <div style="font-size: 1.4em; margin: 8px 0; cursor: pointer; text-align: center; padding: 5px;" onclick="document.querySelector('.permanent-events').scrollIntoView({behavior: 'smooth'})" title="Eventos Permanentes">📅</div>
+                <div style="font-size: 1.4em; margin: 8px 0; cursor: pointer; text-align: center; padding: 5px;" onclick="document.querySelector('.footer').scrollIntoView({behavior: 'smooth'})" title="Contactos">📞</div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(nav);
+}
 
         // Adicionar navegação apenas em ecrãs grandes
         if (window.innerWidth > 768) {
