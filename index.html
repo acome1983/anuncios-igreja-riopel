@@ -741,26 +741,39 @@
         setInterval(updatePrayerCountdown, 60000);
 
         // Função para partilhar
-        function shareContent() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Anúncios - Ministério Baixa',
-                    text: 'Confira os próximos eventos da nossa igreja! ORAÇÃO DE 24H HOJE!',
-                    url: window.location.href
-                });
-            } else {
-                // Fallback para dispositivos sem suporte
-                const text = `🔔 Anúncios - Ministério Baixa\n\n🔥 ORAÇÃO DE 24H HOJE! 🔥\n\nConfira todos os eventos:\n\n${window.location.href}`;
-                
-                if (navigator.clipboard) {
-                    navigator.clipboard.writeText(text).then(() => {
-                        alert('Link copiado! Cole no WhatsApp para partilhar.');
-                    });
-                } else {
-                    alert('Copie este link para partilhar:\n\n' + window.location.href);
-                }
-            }
+   function shareContent() {
+    const elegantMessage = `🔔 ANÚNCIOS OFICIAIS
+Igreja Evangélica Assembleia de Deus
+Congregação da Riopel
+
+🔥 ORAÇÃO DE 24H HOJE! 🔥
+📅 Todos os eventos de Julho e Agosto
+⛪ Cultos permanentes semanais
+🤲 Acção social em curso
+
+📞 Informações: 879791611 | 846031855
+🤝 Ministério Baixa - Marracuene para Cristo
+
+📱 Acesse a página completa dos anúncios:`;
+
+    if (navigator.share) {
+        navigator.share({
+            title: 'Anúncios Igreja Assembleia de Deus - Riopel',
+            text: elegantMessage,
+            url: window.location.href
+        });
+    } else {
+        const messageWithLink = elegantMessage + `\n\n${window.location.href}\n\n(Copie e cole este link no seu navegador)`;
+        
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(messageWithLink).then(() => {
+                alert('📋 Mensagem copiada!\n\nCole no WhatsApp, Telegram ou SMS para partilhar.');
+            });
+        } else {
+            alert('📋 Copie esta mensagem:\n\n' + messageWithLink);
         }
+    }
+}
 
         // Função para partilhar evento específico
         function shareEvent(eventText) {
