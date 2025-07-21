@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anúncios - Ministério Baixa - Marracuene para Cristo</title>
+    <title>Anúncios - Ministério Baixa</title>
     <style>
         * {
             margin: 0;
@@ -150,64 +150,97 @@
             transform: translate(30px, -30px);
         }
 
-        /* ESTILO ESPECIAL PARA ORAÇÃO DE 24H */
-        .prayer-24h {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF7A00 100%);
-            border: none;
-            border-left: 8px solid #FF4500;
-            color: #1A3A7A;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 30px;
-            box-shadow: 0 20px 40px rgba(255, 122, 0, 0.3);
-            animation: glow 3s ease-in-out infinite alternate;
+        /* EVENTOS REALIZADOS */
+        .completed-event {
+            background: linear-gradient(135deg, #E8F5E8 0%, #F0F8F0 100%);
+            border-left-color: #28a745;
+            opacity: 0.8;
         }
 
-        @keyframes glow {
-            from { box-shadow: 0 20px 40px rgba(255, 122, 0, 0.3); }
-            to { box-shadow: 0 25px 50px rgba(255, 122, 0, 0.5); }
-        }
-
-        .prayer-24h::before {
-            content: '';
+        .completed-badge {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(255,255,255,0.3) 0%, transparent 100%);
-            pointer-events: none;
-        }
-
-        .prayer-24h::after {
-            content: '✨';
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2em;
-            animation: sparkle 2s ease-in-out infinite;
-        }
-
-        @keyframes sparkle {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.2) rotate(180deg); }
-        }
-
-        .live-countdown {
-            background: linear-gradient(135deg, #FF4500, #8B0000);
+            top: 15px;
+            right: 15px;
+            background: #28a745;
             color: white;
-            padding: 15px;
-            border-radius: 12px;
-            text-align: center;
-            font-size: 1.3em;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
             font-weight: bold;
-            margin: 15px 0;
-            animation: pulse-countdown 1s ease-in-out infinite;
+            z-index: 2;
         }
 
-        @keyframes pulse-countdown {
+        /* EVENTOS REMARCADOS */
+        .rescheduled-event {
+            border: 2px solid #FF6B35;
+            background: linear-gradient(135deg, #FFF8F0 0%, #FFE8CC 100%);
+        }
+
+        .rescheduled-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #FF6B35;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            z-index: 2;
+            animation: pulse-reschedule 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-reschedule {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* SEÇÃO COLAPSÁVEL */
+        .collapsible-section {
+            margin-top: 20px;
+        }
+
+        .collapse-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid #dee2e6;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .collapse-header:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+
+        .collapse-header h3 {
+            margin: 0;
+            color: #495057;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .collapse-arrow {
+            transition: transform 0.3s ease;
+            font-size: 1.2em;
+        }
+
+        .collapse-arrow.expanded {
+            transform: rotate(180deg);
+        }
+
+        .collapse-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .collapse-content.expanded {
+            max-height: 2000px;
+            padding-top: 20px;
         }
 
         .permanent-events {
@@ -265,28 +298,11 @@
             z-index: 1;
         }
 
-        .prayer-24h .event-date {
-            background: linear-gradient(135deg, #FF4500, #8B0000);
-            font-size: 1.1em;
-            padding: 12px 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         .event-title {
             font-size: 1.4em;
             color: #2B4C9B;
             margin-bottom: 10px;
             font-weight: bold;
-        }
-
-        .prayer-24h .event-title {
-            font-size: 2em;
-            color: #8B0000;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            margin-bottom: 15px;
-            font-weight: 900;
-            text-transform: uppercase;
         }
 
         .event-details {
@@ -317,14 +333,6 @@
             color: #FF7A00;
             font-weight: bold;
             margin-top: 5px;
-        }
-
-        .prayer-details {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 15px 0;
-            border-left: 4px solid #FF4500;
         }
 
         .special-event {
@@ -386,23 +394,6 @@
             font-weight: bold;
         }
 
-        .urgent-banner {
-            background: linear-gradient(90deg, #FF4500, #FFD700, #FF4500);
-            color: white;
-            text-align: center;
-            padding: 15px;
-            font-weight: bold;
-            font-size: 1.1em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            animation: banner-slide 3s ease-in-out infinite;
-            background-size: 200% 100%;
-        }
-
-        @keyframes banner-slide {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
         .countdown {
             display: inline-block;
             background: rgba(255, 255, 255, 0.1);
@@ -410,22 +401,6 @@
             border-radius: 15px;
             margin-left: 10px;
             font-size: 0.8em;
-        }
-
-        .now-live {
-            background: linear-gradient(135deg, #FF0000, #FF4500);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: bold;
-            animation: live-pulse 1s ease-in-out infinite;
-            display: inline-block;
-            margin: 10px 0;
-        }
-
-        @keyframes live-pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
         }
 
         @media (max-width: 600px) {
@@ -444,10 +419,6 @@
             
             .event-card {
                 padding: 20px;
-            }
-
-            .prayer-24h .event-title {
-                font-size: 1.5em;
             }
         }
 
@@ -483,101 +454,55 @@
     </div>
 
     <div class="container">
-        <div class="urgent-banner">
-            🔥 ORAÇÃO DE 24 HORAS HOJE! NÃO PERCA! 🔥
-        </div>
-
         <div class="header">
-           <div class="church-logo">
-    <img src="logo-igreja.png" alt="Logo Igreja">
-</div>
-            <div class="church-name"></div>
-            <div class="church-name"></div>
+            <div class="church-logo">
+                <img src="logo-igreja.png" alt="Logo Igreja">
+            </div>
+            <div class="church-name">IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS</div>
+            <div class="church-name">CONGREGAÇÃO DA RIOPEL</div>
             <h1>📢 Anúncios Oficiais</h1>
             <p>Ministério Baixa - Marracuene para Cristo</p>
         </div>
 
         <div class="month-section">
-            <h2 class="section-title">🔥 EVENTO DE HOJE</h2>
-            
-            <!-- ORAÇÃO DE 24H - HOJE -->
-            <div class="event-card prayer-24h">
-                <div class="event-date">14-15 JULHO - SEGUNDA/TERÇA</div>
-                <div class="event-title">🙏 ORAÇÃO DE 24 HORAS</div>
-                
-                <div class="live-countdown" id="prayerCountdown">
-                    ⏰ CALCULANDO TEMPO...
-                </div>
-                
-                <div class="prayer-details">
-                    <strong>📍 Local:</strong> Congregação da Riopel<br>
-                    <strong>⏰ Início:</strong> 15h00 de hoje (Segunda-feira)<br>
-                    <strong>⏰ Término:</strong> 15h00 de amanhã (Terça-feira)<br>
-                    <strong>🎯 Duração:</strong> 24 horas contínuas de oração
-                </div>
-                
-                <div class="event-theme">
-                    ✨ <strong>Tema:</strong> "Se o Senhor não edificar a casa, em vão trabalham os que a edificam"
-                    <div class="verse-reference">Salmo 127:1</div>
-                </div>
-
-                <div class="event-actions">
-                    <button class="share-btn" onclick="shareEvent('Oração 24h HOJE! 15h-15h na Riopel!')">
-                        📱 Partilhar Evento
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="month-section">
             <h2 class="section-title">🌟 JULHO 2025</h2>
             
-            <div class="event-card">
-                <div class="event-date">19 DE JULHO - SÁBADO</div>
-                <div class="event-title">📖 Estudo para Jovens</div>
-                <div class="event-location">📍 Congregação de Zimpeto - 8h00</div>
-                <div class="event-theme">
-                    🎯 Tema: "Escolha Certa"
-                    <div class="verse-reference">Eclesiastes 11:9</div>
-                </div>
-                <div class="event-actions">
-                    <button class="share-btn" onclick="shareEvent('Estudo para Jovens - 19 Jul, 8h em Zimpeto!')">
-                        📱 Partilhar Evento
-                    </button>
-                </div>
-            </div>
-
-            <div class="event-card">
-                <div class="event-date">20 DE JULHO - DOMINGO</div>
-                <div class="event-title">🚀 Campanha de Evangelização</div>
-                <div class="event-location">📍 Sub Congregação de Agostinho Neto</div>
+            <!-- EVENTOS REMARCADOS -->
+            <div class="event-card rescheduled-event" data-event="programa-jovens">
+                <div class="rescheduled-badge">📅 REMARCADO</div>
+                <div class="event-date">26 DE JULHO - SÁBADO</div>
+                <div class="event-title">💻 Programa de Jovens - Inquiridores</div>
+                <div class="event-location">📍 Local a anunciar - 8h00</div>
                 <div class="event-details">
-                    <strong>Ponto de Encontro:</strong> Entrada do Agostinho Neto<br>
-                    <strong>Participação:</strong> 5 irmãos ou mais por congregação<br>
-                    <em>Mais informações serão partilhadas</em>
+                    <strong>🎯 Tema:</strong> Aula de Inquiridores de Dados Estatísticos<br>
+                    <strong>📍 Área:</strong> Alunos do Marracuene e Distrito de Filadélfia<br>
+                    <strong>📱 Requisitos:</strong> Telefones Android com megas e carga suficiente para toda a sessão
                 </div>
                 <div class="event-actions">
-                    <button class="share-btn" onclick="shareEvent('Campanha de Evangelização - 20 Jul em Agostinho Neto!')">
+                    <button class="share-btn" onclick="shareEvent('Programa Jovens REMARCADO - 26 Jul, 8h!')">
                         📱 Partilhar Evento
                     </button>
                 </div>
             </div>
 
-            <div class="event-card">
+            <div class="event-card rescheduled-event" data-event="encontro-casais">
+                <div class="rescheduled-badge">📅 REMARCADO</div>
                 <div class="event-date">27 DE JULHO - DOMINGO</div>
-                <div class="event-title">👥 Tafula dos Papás</div>
-                <div class="event-location">📍 Congregação de Kumbeza - 8h00</div>
+                <div class="event-title">💑 Encontro com Casais</div>
+                <div class="event-location">📍 Congregação da Riopel - 11h00</div>
                 <div class="event-details">
-                    <em>Tema por anunciar</em>
+                    <strong>🎯 Programa:</strong> Casamento Colectivo<br>
+                    <strong>👥 Participantes:</strong> Casais inscritos no programa<br>
+                    <em>Preparação para o casamento colectivo da igreja</em>
                 </div>
                 <div class="event-actions">
-                    <button class="share-btn" onclick="shareEvent('Tafula dos Papás - 27 Jul, 8h em Kumbeza!')">
+                    <button class="share-btn" onclick="shareEvent('Encontro Casais REMARCADO - 27 Jul, 11h na Riopel!')">
                         📱 Partilhar Evento
                     </button>
                 </div>
             </div>
 
-            <div class="event-card special-event">
+            <div class="event-card special-event" data-event="consagracao">
                 <div class="event-date">30 JUL - 1 AGO</div>
                 <div class="event-title">🙏 Consagração de 72 Horas</div>
                 <div class="event-location">📍 Todas as congregações do Ministério Baixa</div>
@@ -627,6 +552,53 @@
             </div>
         </div>
 
+        <!-- SEÇÃO DE EVENTOS REALIZADOS (COLAPSÁVEL) -->
+        <div class="month-section">
+            <div class="collapsible-section">
+                <div class="collapse-header" onclick="toggleCollapse('completed-events')">
+                    <h3>
+                        ✅ Eventos Realizados
+                        <span class="collapse-arrow" id="completed-events-arrow">▼</span>
+                    </h3>
+                </div>
+                <div class="collapse-content" id="completed-events-content">
+                    <div class="event-card completed-event">
+                        <div class="completed-badge">✅ Foi uma bênção!</div>
+                        <div class="event-date">14-15 JULHO - SEGUNDA/TERÇA</div>
+                        <div class="event-title">🙏 Oração de 24 Horas</div>
+                        <div class="event-location">📍 Congregação da Riopel</div>
+                        <div class="event-details">
+                            <strong>Duração:</strong> 24 horas contínuas de oração<br>
+                            <strong>Tema:</strong> "Se o Senhor não edificar a casa, em vão trabalham os que a edificam" - Salmo 127:1<br>
+                            <em>Evento realizado com grande participação dos irmãos!</em>
+                        </div>
+                    </div>
+
+                    <div class="event-card completed-event">
+                        <div class="completed-badge">✅ Foi uma bênção!</div>
+                        <div class="event-date">19 DE JULHO - SÁBADO</div>
+                        <div class="event-title">📖 Estudo para Jovens</div>
+                        <div class="event-location">📍 Congregação de Zimpeto</div>
+                        <div class="event-details">
+                            <strong>Tema:</strong> "Escolha Certa" - Eclesiastes 11:9<br>
+                            <em>Momento de grande edificação espiritual para os jovens!</em>
+                        </div>
+                    </div>
+
+                    <div class="event-card completed-event">
+                        <div class="completed-badge">✅ Foi uma bênção!</div>
+                        <div class="event-date">20 DE JULHO - DOMINGO</div>
+                        <div class="event-title">🚀 Campanha de Evangelização</div>
+                        <div class="event-location">📍 Sub Congregação de Agostinho Neto</div>
+                        <div class="event-details">
+                            <strong>Resultado:</strong> Grande participação dos irmãos<br>
+                            <em>Muitas vidas alcançadas para Cristo!</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="month-section">
             <h2 class="section-title">📅 EVENTOS PERMANENTES</h2>
             
@@ -636,8 +608,8 @@
                 <div class="event-location">📍 Congregação da Riopel - 18h00</div>
                 <div class="event-details">
                     <strong>💝 Fortaleça os laços da sua família em Cristo!</strong><br>
-                    Venha participar de um momento especial de comunhão, oração e crescimento espiritual. 
-                   
+                    Venha com toda a família para um momento especial de comunhão, oração e crescimento espiritual. 
+                    Cada terça-feira é uma oportunidade de construir relacionamentos mais profundos e cultivar valores cristãos no seio familiar.
                 </div>
                 <div class="event-actions">
                     <button class="share-btn" onclick="shareEvent('Culto Grupos Familiares - Todas terças 18h na Riopel!')">
@@ -667,16 +639,15 @@
                 <div class="event-title">🤲 Campanha de Solidariedade</div>
                 <div class="event-location">📍 Congregação da Riopel</div>
                 <div class="event-details">
-             <div class="event-details">
-                    <strong>🤲 Seja parte desta missão de amor!!</strong><br><br>
+                    <strong>🙏 Seja as mãos de Jesus para quem precisa!</strong><br><br>
                     <strong>Estamos a receber doações de:</strong><br>
-                    • Roupas(todas as idades)<br>
-                    • Alimentos não perecíveis<br>
+                    • Roupas em bom estado (todas as idades)<br>
+                    • Alimentos não perecíveis (arroz, feijão, óleo, etc.)<br>
                     • Produtos de higiene pessoal<br>
                     • Cobertores e material escolar<br>
                     • Outros bens que possam abençoar famílias<br><br>
                     <em>"Bem-aventurado aquele que atende ao necessitado; o Senhor o livrará no dia do mal." - Salmo 41:1</em><br><br>
-                    A sua generosidade pode transformar vidas e ser uma bênção para famílias carenciadas.
+                    A sua generosidade pode transformar vidas e ser uma bênção para famílias carenciadas da nossa comunidade.
                 </div>
                 <div class="event-actions">
                     <button class="share-btn" onclick="shareEvent('Acção Social - Doações de roupas e alimentos na Riopel!')">
@@ -707,53 +678,27 @@
         // Actualizar data actual
         document.getElementById('currentDate').textContent = new Date().toLocaleDateString('pt-BR');
 
-        // Countdown para Oração de 24h
-        function updatePrayerCountdown() {
-            const now = new Date();
-            const today = new Date();
-            const startTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 15, 0, 0); // 15h00 hoje
-            const endTime = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1, 15, 0, 0); // 15h00 amanhã
+        // Função para alternar seções colapsáveis
+        function toggleCollapse(sectionId) {
+            const content = document.getElementById(sectionId + '-content');
+            const arrow = document.getElementById(sectionId + '-arrow');
             
-            const countdownElement = document.getElementById('prayerCountdown');
-            
-            if (now < startTime) {
-                // Antes de começar
-                const timeDiff = startTime - now;
-                const hours = Math.floor(timeDiff / (1000 * 60 * 60));
-                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-                
-                if (hours > 0) {
-                    countdownElement.innerHTML = `⏰ COMEÇA EM ${hours}h${minutes > 0 ? ` ${minutes}min` : ''}`;
-                } else {
-                    countdownElement.innerHTML = `⏰ COMEÇA EM ${minutes} MINUTOS!`;
-                }
-            } else if (now >= startTime && now < endTime) {
-                // Durante a oração
-                const remaining = endTime - now;
-                const hoursLeft = Math.floor(remaining / (1000 * 60 * 60));
-                const minutesLeft = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-                
-                countdownElement.innerHTML = `🔴 AO VIVO! Faltam ${hoursLeft}h ${minutesLeft}min`;
-                countdownElement.className = 'now-live';
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                arrow.classList.remove('expanded');
             } else {
-                // Depois de terminar
-                countdownElement.innerHTML = `✅ ORAÇÃO CONCLUÍDA!`;
-                countdownElement.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                content.classList.add('expanded');
+                arrow.classList.add('expanded');
             }
         }
 
-        // Actualizar countdown a cada minuto
-        updatePrayerCountdown();
-        setInterval(updatePrayerCountdown, 60000);
-
         // Função para partilhar
-   function shareContent() {
-    const elegantMessage = `🔔 ANÚNCIOS OFICIAIS
+        function shareContent() {
+            const elegantMessage = `🔔 ANÚNCIOS OFICIAIS
 Igreja Evangélica Assembleia de Deus
 Congregação da Riopel
 
-🔥 ORAÇÃO DE 24H HOJE! 🔥
-📅 Todos os eventos de Julho e Agosto
+📅 Eventos actualizados de Julho e Agosto
 ⛪ Cultos permanentes semanais
 🤲 Acção social em curso
 
@@ -762,41 +707,47 @@ Contacte: 879791611 | 846031855
 
 🤝 Ministério Baixa - Marracuene para Cristo`;
 
-    if (navigator.share) {
-      https://github.com/acome1983/anuncios-igreja-riopel
-        navigator.share({
-            title: 'Anúncios Igreja Assembleia de Deus - Riopel',
-            text: elegantMessage
-            // SEM url: window.location.href
-        });
-    } else {
-        // Para desktop - também sem link visível
-        if (navigator.clipboard) {
-            navigator.clipboard.writeText(elegantMessage).then(() => {
-                alert('📋 Mensagem copiada!\n\nAs pessoas devem contactar os números para aceder à página.');
-            });
-        } else {
-            alert('📋 Copie esta mensagem:\n\n' + elegantMessage);
-        }
-    }
-}
-
-        // Função para partilhar evento específico
-        function shareEvent(eventText) {
-            const fullText = `🔔 ${eventText}\n\nIgreja Assembleia de Deus - Riopel\nMinistério Baixa\n\n📱 Veja todos os eventos:\n${window.location.href}\n\n📞 Contactos: 879791611 | 846031855`;
-            
             if (navigator.share) {
                 navigator.share({
-                    title: 'Evento da Igreja',
-                    text: fullText
+                    title: 'Anúncios Igreja Assembleia de Deus - Riopel',
+                    text: elegantMessage
                 });
             } else {
                 if (navigator.clipboard) {
-                    navigator.clipboard.writeText(fullText).then(() => {
-                        alert('Evento copiado! Cole no WhatsApp para partilhar.');
+                    navigator.clipboard.writeText(elegantMessage).then(() => {
+                        alert('📋 Mensagem copiada!\n\nAs pessoas devem contactar os números para aceder à página.');
                     });
                 } else {
-                    alert('Copie esta mensagem:\n\n' + fullText);
+                    alert('📋 Copie esta mensagem:\n\n' + elegantMessage);
+                }
+            }
+        }
+
+        // Função para partilhar evento específico
+        function shareEvent(eventText) {
+            const eventMessage = `🔔 ${eventText}
+
+Igreja Evangélica Assembleia de Deus
+Congregação da Riopel
+Ministério Baixa
+
+📞 Mais informações: 879791611 | 846031855
+🤝 Marracuene para Cristo
+
+📱 Página completa dos anúncios disponível nos contactos acima`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Evento da Igreja - Riopel',
+                    text: eventMessage
+                });
+            } else {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(eventMessage).then(() => {
+                        alert('📋 Evento copiado!\nCole no WhatsApp para partilhar.');
+                    });
+                } else {
+                    alert('📋 Copie esta mensagem:\n\n' + eventMessage);
                 }
             }
         }
@@ -814,36 +765,55 @@ Contacte: 879791611 | 846031855
             }, index * 150);
         });
 
-        // Destacar eventos próximos
-        const today = new Date();
-        const eventDates = [
-            { date: new Date('2025-07-14'), element: document.querySelector('.prayer-24h') },
-            { date: new Date('2025-07-19'), element: cards[1] },
-            { date: new Date('2025-07-20'), element: cards[2] },
-            { date: new Date('2025-07-27'), element: cards[3] },
-            { date: new Date('2025-07-30'), element: cards[4] }
-        ];
+        // Sistema inteligente de gestão de eventos
+        function manageEvents() {
+            const today = new Date();
+            const eventDates = [
+                { date: new Date('2025-07-26'), element: document.querySelector('[data-event="programa-jovens"]'), name: 'Programa Jovens' },
+                { date: new Date('2025-07-27'), element: document.querySelector('[data-event="encontro-casais"]'), name: 'Encontro Casais' },
+                { date: new Date('2025-07-30'), element: document.querySelector('[data-event="consagracao"]'), name: 'Consagração' }
+            ];
 
-        eventDates.forEach(event => {
-            if (event.element && !event.element.classList.contains('prayer-24h')) {
-                const timeDiff = event.date - today;
-                const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-                
-                if (daysDiff <= 7 && daysDiff > 0) {
-                    event.element.style.border = '2px solid #ff6b6b';
-                    event.element.style.background = 'linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%)';
+            eventDates.forEach(event => {
+                if (event.element) {
+                    const timeDiff = event.date - today;
+                    const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
                     
-                    const dateElement = event.element.querySelector('.event-date');
-                    if (dateElement) {
-                        dateElement.innerHTML += `<span class="countdown">Em ${daysDiff} dia${daysDiff > 1 ? 's' : ''}</span>`;
+                    if (daysDiff <= 7 && daysDiff > 0) {
+                        // Eventos próximos (7 dias)
+                        event.element.style.border = '2px solid #ff6b6b';
+                        event.element.style.background = 'linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%)';
+                        
+                        const dateElement = event.element.querySelector('.event-date');
+                        if (dateElement && !dateElement.innerHTML.includes('Em ')) {
+                            dateElement.innerHTML += `<span class="countdown">Em ${daysDiff} dia${daysDiff > 1 ? 's' : ''}</span>`;
+                        }
+                    } else if (daysDiff === 0) {
+                        // Eventos hoje
+                        const badge = document.createElement('div');
+                        badge.innerHTML = '🔴 HOJE!';
+                        badge.style.cssText = `
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                            background: #FF4500;
+                            color: white;
+                            padding: 8px 15px;
+                            border-radius: 15px;
+                            font-size: 0.8em;
+                            font-weight: bold;
+                            animation: pulse 1s infinite;
+                            z-index: 2;
+                        `;
+                        event.element.appendChild(badge);
                     }
                 }
-            }
-        });
+            });
+        }
 
-        // Função para detectar o dia da semana e destacar eventos permanentes
+        // Função para detectar eventos permanentes do dia
         function highlightWeeklyEvents() {
-            const dayOfWeek = new Date().getDay(); // 0 = Domingo, 1 = Segunda, 2 = Terça, etc.
+            const dayOfWeek = new Date().getDay();
             const permanentCards = document.querySelectorAll('.permanent-events');
             
             permanentCards.forEach(card => {
@@ -867,6 +837,7 @@ Contacte: 879791611 | 846031855
                         font-size: 0.8em;
                         font-weight: bold;
                         animation: pulse 1s infinite;
+                        z-index: 2;
                     `;
                     card.appendChild(badge);
                 }
@@ -889,46 +860,14 @@ Contacte: 879791611 | 846031855
                         font-size: 0.8em;
                         font-weight: bold;
                         animation: pulse 1s infinite;
+                        z-index: 2;
                     `;
                     card.appendChild(badge);
                 }
             });
         }
 
-        // Executar destaque de eventos semanais
-        highlightWeeklyEvents();
-
-        // Adicionar efeito de contagem de participação (simulado)
-        function addParticipationCounter() {
-            const eventCards = document.querySelectorAll('.event-card:not(.permanent-events):not(.social-action)');
-            
-            eventCards.forEach((card, index) => {
-                const randomCount = Math.floor(Math.random() * 50) + 20; // Entre 20-70 pessoas
-                
-                const counter = document.createElement('div');
-                
-                counter.style.cssText = `
-                    background: rgba(43, 76, 155, 0.1);
-                    color: #2B4C9B;
-                    padding: 8px 12px;
-                    border-radius: 20px;
-                    font-size: 0.9em;
-                    margin-top: 10px;
-                    text-align: center;
-                    font-weight: bold;
-                `;
-                
-                const actionsDiv = card.querySelector('.event-actions');
-                if (actionsDiv) {
-                    actionsDiv.insertBefore(counter, actionsDiv.firstChild);
-                }
-            });
-        }
-
-        // Adicionar contadores após animações
-        setTimeout(addParticipationCounter, 2000);
-
-        // Função para mostrar notificação de evento próximo
+        // Função para notificações de eventos próximos
         function showEventNotification() {
             const now = new Date();
             const hour = now.getHours();
@@ -966,48 +905,64 @@ Contacte: 879791611 | 846031855
             }
         }
 
-        // Verificar notificações a cada minuto
-        setInterval(showEventNotification, 60000);
-        showEventNotification(); // Verificar imediatamente
+        // Adicionar navegação rápida
+        function addQuickNavigation() {
+            const nav = document.createElement('div');
+            nav.innerHTML = `
+                <div style="position: fixed; left: 10px; top: 50%; transform: translateY(-50%); z-index: 1000;">
+                    <div style="background: rgba(255,255,255,0.95); border-radius: 25px; padding: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: 2px solid #2B4C9B;">
+                        <div style="font-size: 1.4em; margin: 8px 0; cursor: pointer; text-align: center; padding: 5px;" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Topo">🔝</div>
+                        <div style="font-size: 1.4em; margin: 8px 0; cursor: pointer; text-align: center; padding: 5px;" onclick="document.querySelector('.section-title').scrollIntoView({behavior: 'smooth'})" title="Eventos Julho">📅</div>
+                        <div style="font-size: 1.4em; margin: 8px 0; cursor: pointer; text-align: center; padding: 5px;" onclick="document.querySelector('.permanent-events').scrollIntoView({behavior: 'smooth'})" title="Eventos Permanentes">⛪</div>
+                        <div style="font-size: 1.4em; margin: 8px 0; cursor: pointer; text-align: center; padding: 5px;" onclick="document.querySelector('.footer').scrollIntoView({behavior: 'smooth'})" title="Contactos">📞</div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(nav);
+        }
 
-        // Adicionar CSS para animação slideIn
+        // Adicionar CSS para animações
         const style = document.createElement('style');
         style.textContent = `
             @keyframes slideIn {
                 from { transform: translateX(100%); opacity: 0; }
                 to { transform: translateX(0); opacity: 1; }
             }
+            @keyframes pulse {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.7; }
+            }
         `;
         document.head.appendChild(style);
 
-        // Função para scroll suave para secções
-        function smoothScrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+        // Executar funções de inicialização
+        setTimeout(() => {
+            manageEvents();
+            highlightWeeklyEvents();
+            addQuickNavigation();
+        }, 1000);
+
+        // Verificar notificações a cada minuto
+        setInterval(showEventNotification, 60000);
+        showEventNotification();
+
+        // Auto-limpeza de eventos antigos (executa uma vez por dia)
+        function autoCleanOldEvents() {
+            const today = new Date();
+            const completedSection = document.getElementById('completed-events-content');
+            
+            if (completedSection) {
+                const oldEvents = completedSection.querySelectorAll('.completed-event');
+                oldEvents.forEach(event => {
+                    const eventDateText = event.querySelector('.event-date').textContent;
+                    // Lógica para remover eventos com mais de 30 dias
+                    // (Implementação simplificada - em produção seria mais robusta)
+                });
             }
         }
 
-        // Adicionar navegação rápida (opcional)
- function addQuickNavigation() {
-    const nav = document.createElement('div');
-    nav.innerHTML = `
-        <div style="position: fixed; left: 10px; top: 50%; transform: translateY(-50%); z-index: 1000;">
-            <div style="background: rgba(255,255,255,0.95); border-radius: 25px; padding: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: 2px solid #2B4C9B;">
-                <div style="font-size: 1.4em; margin: 8px 0; cursor: pointer; text-align: center; padding: 5px;" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Topo">🔝</div>
-                <div style="font-size: 1.4em; margin: 8px 0; cursor: pointer; text-align: center; padding: 5px;" onclick="document.querySelector('.prayer-24h').scrollIntoView({behavior: 'smooth'})" title="Oração 24h">🙏</div>
-                <div style="font-size: 1.4em; margin: 8px 0; cursor: pointer; text-align: center; padding: 5px;" onclick="document.querySelector('.permanent-events').scrollIntoView({behavior: 'smooth'})" title="Eventos Permanentes">📅</div>
-                <div style="font-size: 1.4em; margin: 8px 0; cursor: pointer; text-align: center; padding: 5px;" onclick="document.querySelector('.footer').scrollIntoView({behavior: 'smooth'})" title="Contactos">📞</div>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(nav);
-}
-
-        // Adicionar navegação apenas em ecrãs grandes
-        if (window.innerWidth > 768) {
-            addQuickNavigation();
-        }
+        // Executar limpeza automática
+        autoCleanOldEvents();
 
     </script>
 </body>
