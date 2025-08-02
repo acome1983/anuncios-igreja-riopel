@@ -170,29 +170,42 @@
             z-index: 2;
         }
 
-        /* EVENTOS REMARCADOS */
-        .rescheduled-event {
-            border: 2px solid #FF6B35;
+        /* EVENTOS ESPECIAIS */
+        .leadership-event {
+            border-left-color: #8B0000;
+            background: linear-gradient(135deg, #FFF0F0 0%, #FFE8E8 100%);
+        }
+
+        .leadership-event .event-date {
+            background: linear-gradient(135deg, #8B0000, #A50000);
+        }
+
+        .convention-event {
+            border-left-color: #4B0082;
+            background: linear-gradient(135deg, #F8F0FF 0%, #F0E8FF 100%);
+        }
+
+        .convention-event .event-date {
+            background: linear-gradient(135deg, #4B0082, #6A0DAD);
+        }
+
+        .revival-event {
+            border-left-color: #FF4500;
             background: linear-gradient(135deg, #FFF8F0 0%, #FFE8CC 100%);
         }
 
-        .rescheduled-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #FF6B35;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: bold;
-            z-index: 2;
-            animation: pulse-reschedule 2s ease-in-out infinite;
+        .revival-event .event-date {
+            background: linear-gradient(135deg, #FF4500, #FF6B35);
         }
 
-        @keyframes pulse-reschedule {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .thanksgiving-event {
+            border-left-color: #FFD700;
+            background: linear-gradient(135deg, #FFFBF0 0%, #FFF8DC 100%);
+        }
+
+        .thanksgiving-event .event-date {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #8B4513;
         }
 
         /* SEÇÃO COLAPSÁVEL */
@@ -259,6 +272,15 @@
 
         .social-action .event-title {
             color: #DC3545;
+        }
+
+        .future-events {
+            background: linear-gradient(135deg, #E8F8FF 0%, #D4EDDA 100%);
+            border-left: 5px solid #17A2B8;
+        }
+
+        .future-events .event-title {
+            color: #17A2B8;
         }
 
         .event-actions {
@@ -335,13 +357,238 @@
             margin-top: 5px;
         }
 
-        .special-event {
-            border-left-color: #FF7A00;
-            background: linear-gradient(135deg, #FFF4E8 0%, #FFE8CC 100%);
+        .holy-communion {
+            background: linear-gradient(135deg, #F8F4E6 0%, #FFF8DC 50%, #F0E68C 100%);
+            border: none;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(218, 165, 32, 0.3);
+            transform: scale(1.05);
         }
 
-        .special-event .event-date {
-            background: linear-gradient(135deg, #FF7A00, #E65A00);
+        .holy-communion::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(218, 165, 32, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .communion-header {
+            background: linear-gradient(135deg, #8B4513 0%, #DAA520 50%, #B8860B 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            margin: -25px -25px 25px -25px;
+            border-radius: 25px 25px 0 0;
+        }
+
+        .communion-header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 10px solid #B8860B;
+        }
+
+        .dove-container {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .dove-container::before {
+            content: '🕊️';
+            font-size: 2em;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); }
+            to { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.6); }
+        }
+
+        .communion-title {
+            font-size: 2.2em;
+            margin: 0 80px 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: bold;
+        }
+
+        .communion-subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            font-style: italic;
+            margin-bottom: 0;
+        }
+
+        .communion-content {
+            padding: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .communion-date-time {
+            background: linear-gradient(135deg, #8B4513, #CD853F);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+            position: relative;
+        }
+
+        .countdown-special {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-left: 15px;
+            font-size: 0.9em;
+            animation: pulse-gold 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-gold {
+            0%, 100% { background: rgba(255, 255, 255, 0.3); }
+            50% { background: rgba(255, 215, 0, 0.4); }
+        }
+
+        .communion-location {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid #DAA520;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .communion-theme {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 244, 230, 0.9));
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border: 2px solid #DAA520;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.1em;
+            color: #8B4513;
+            position: relative;
+        }
+
+        .communion-theme::before {
+            content: '✨';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #F8F4E6;
+            padding: 5px 10px;
+            border-radius: 50%;
+        }
+
+        .communion-description {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            line-height: 1.7;
+            color: #5D4E37;
+            margin: 15px 0;
+            font-size: 1.05em;
+        }
+
+        .communion-invitation {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #8B4513;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .communion-invitation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shine 3s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .communion-actions {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px dashed #DAA520;
+        }
+
+        .share-btn-special {
+            background: linear-gradient(135deg, #8B4513, #CD853F);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .share-btn-special:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(139, 69, 19, 0.4);
+        }
+
+        .share-btn-special::before {
+            content: '🕊️';
+            margin-right: 8px;
+            font-size: 1.2em;
         }
 
         .footer {
@@ -453,7 +700,7 @@
         <button class="icon-btn" onclick="window.print()" title="Imprimir">🖨️</button>
     </div>
 
-    <div class="container">
+  <div class="container">
         <div class="header">
             <div class="church-logo">
                 <img src="logo-igreja.png" alt="Logo Igreja">
@@ -464,7 +711,8 @@
             <p>Ministério Baixa - Marracuene para Cristo</p>
         </div>
 
-      <div class="month-section">
+
+        <div class="month-section">
             <h2 class="section-title">🌟 AGOSTO 2025</h2>
             
             <div class="event-card holy-communion" data-event="santa-ceia">
@@ -477,7 +725,7 @@
                 <div class="communion-content">
                     <div class="communion-date-time">
                         📅 4 DE AGOSTO - DOMINGO
-                        <span class="countdown-special" id="santa-ceia-countdown">.</span>
+                        <span class="countdown-special" id="santa-ceia-countdown">Calculando...</span>
                     </div>
                     
                     <div class="communion-location">
@@ -547,7 +795,7 @@
                 <div class="event-location">📍 Congregação de Muhalaze</div>
                 <div class="event-details">
                     <strong>👥 Participantes:</strong> Pastores, Presbíteros e Probatórios<br>
-                    <strong>💰 Importante:</strong> Pagamento de quotas<br>
+                    <strong>💰 Importante:</strong> Pagamento de quotas obrigatório<br>
                     <strong>📢 Exortação:</strong> Participação massiva de todos os convocados<br>
                     <em>Os probatórios também devem participar activamente</em>
                 </div>
@@ -593,7 +841,7 @@
                 <div class="event-title">🔄 Troca de Púlpito Geral</div>
                 <div class="event-location">📍 Todas as congregações</div>
                 <div class="event-details">
-                    <strong>🎯 Objectivo:</strong>Preparação do Culto de Acção de Graças<br>
+                    //<strong>🎯 Objectivo:</strong> Preparação do Culto de Acção de Graças<br>
                     
                 </div>
                 <div class="event-actions">
