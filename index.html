@@ -4,6 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anúncios - Ministério Baixa</title>
+    
+    <!-- Meta tags para preview no WhatsApp e redes sociais -->
+    <meta property="og:title" content="Anúncios Oficiais - Igreja Assembleia de Deus Riopel">
+    <meta property="og:description" content="Eventos de Agosto 2025: Santa Ceia dia 4, Convenção de Pastores 8-9, Reavivamento 25-29, Culto de Acções de Graças dia 30. Ministério Baixa - Marracuene para Cristo">
+    <meta property="og:image" content="https://example.com/logo-igreja.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://example.com/anuncios">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Igreja Assembleia de Deus - Riopel">
+    
+    <!-- Meta tags específicas do WhatsApp -->
+    <meta property="og:image:alt" content="Logo da Igreja Evangélica Assembleia de Deus - Congregação da Riopel">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Anúncios Oficiais - Igreja Assembleia de Deus Riopel">
+    <meta name="twitter:description" content="Eventos de Agosto 2025: Santa Ceia, Convenção, Reavivamento e muito mais!">
+    <meta name="twitter:image" content="https://example.com/logo-igreja.png">
+    
+    <!-- Meta tags adicionais -->
+    <meta name="description" content="Anúncios oficiais da Igreja Evangélica Assembleia de Deus - Congregação da Riopel. Eventos de Agosto 2025, cultos permanentes e informações importantes.">
+    <meta name="keywords" content="Igreja, Assembleia de Deus, Riopel, Marracuene, eventos, cultos, santa ceia">
+    <meta name="author" content="Igreja Assembleia de Deus - Ministério Baixa">
+    
     <style>
         * {
             margin: 0;
@@ -44,6 +67,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
         }
 
         .church-logo img {
@@ -51,6 +77,14 @@
             max-height: 150px;
             object-fit: contain;
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+        }
+
+        /* Placeholder para quando não há logo */
+        .church-logo::before {
+            content: '⛪';
+            font-size: 4em;
+            color: rgba(255, 255, 255, 0.8);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
         .header::before {
@@ -692,15 +726,40 @@
             transform: scale(1.1);
             background: white;
         }
+
+        /* Botão especial para gerar link com preview */
+        .share-link-btn {
+            background: linear-gradient(135deg, #FF7A00, #FF4500);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+            font-size: 0.9em;
+        }
+
+        .share-link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 122, 0, 0.4);
+        }
+
+        .share-link-btn::before {
+            content: '🔗';
+            margin-right: 8px;
+        }
     </style>
 </head>
 <body>
     <div class="floating-icons">
         <button class="icon-btn" onclick="shareContent()" title="Partilhar">📱</button>
+        <button class="icon-btn" onclick="generateShareableLink()" title="Gerar Link com Preview">🔗</button>
         <button class="icon-btn" onclick="window.print()" title="Imprimir">🖨️</button>
     </div>
 
-  <div class="container">
+<div class="container">
         <div class="header">
             <div class="church-logo">
                 <img src="logo-igreja.png" alt="Logo Igreja">
@@ -710,6 +769,7 @@
             <h1>📢 Anúncios Oficiais</h1>
             <p>Ministério Baixa - Marracuene para Cristo</p>
         </div>
+
 
 
         <div class="month-section">
@@ -724,7 +784,7 @@
                 
                 <div class="communion-content">
                     <div class="communion-date-time">
-                        📅 4 DE AGOSTO - DOMINGO
+                        📅 3 DE AGOSTO - DOMINGO
                         <span class="countdown-special" id="santa-ceia-countdown">Calculando...</span>
                     </div>
                     
@@ -766,8 +826,11 @@
                     </div>
                     
                     <div class="communion-actions">
-                        <button class="share-btn-special" onclick="shareEvent('🕊️ Santa Ceia AMANHÃ - 4 Ago, 7h30 na Riopel! Renovação do coração pelo Espírito Santo')">
+                        <button class="share-btn-special" onclick="shareEvent('🕊️ Santa Ceia AMANHÃ - 3 Ago, 7h30 na Riopel! Renovação do coração pelo Espírito Santo')">
                             Partilhar Convite Especial
+                        </button>
+                        <button class="share-link-btn" onclick="generateShareableLink()">
+                            Gerar Link com Preview
                         </button>
                     </div>
                 </div>
@@ -841,8 +904,7 @@
                 <div class="event-title">🔄 Troca de Púlpito Geral</div>
                 <div class="event-location">📍 Todas as congregações</div>
                 <div class="event-details">
-                    //<strong>🎯 Objectivo:</strong> Preparação do Culto de Acção de Graças<br>
-                    
+                    <strong>🎯 Objectivo:</strong> Preparação do Culto de Acção de Graças<br>
                 </div>
                 <div class="event-actions">
                     <button class="share-btn" onclick="shareEvent('Troca Púlpito - 10 Ago em todas congregações!')">
@@ -1141,7 +1203,7 @@
             }
         }
 
-        // Função para partilhar
+        // Função para partilhar conteúdo geral
         function shareContent() {
             const elegantMessage = `🔔 ANÚNCIOS OFICIAIS
 Igreja Evangélica Assembleia de Deus
@@ -1172,6 +1234,44 @@ Contacte: 879791611 | 846031855
             }
         }
 
+        // Nova função para gerar link compartilhável com preview
+        function generateShareableLink() {
+            // Simula a criação de um link personalizado
+            const customUrl = 'https://igreja-riopel.site/anuncios-agosto-2025';
+            
+            const linkMessage = `🔗 ANÚNCIOS OFICIAIS - IGREJA RIOPEL
+            
+📖 Acesse todos os eventos de Agosto 2025:
+${customUrl}
+
+🔸 Santa Ceia - 3 de Agosto
+🔸 Convenção de Pastores - 8-9 Agosto  
+🔸 Reavivamento - 25-29 Agosto
+🔸 Culto de Acções de Graças - 30 Agosto
+
+⛪ Igreja Evangélica Assembleia de Deus
+📍 Congregação da Riopel
+📞 879791611 | 846031855
+
+🤝 Ministério Baixa - Marracuene para Cristo`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Anúncios Igreja Riopel - Agosto 2025',
+                    text: linkMessage,
+                    url: customUrl
+                });
+            } else {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(linkMessage).then(() => {
+                        alert('🔗 Link com preview copiado!\n\nQuando partilhado no WhatsApp, mostrará o logo e descrição da igreja.');
+                    });
+                } else {
+                    alert('🔗 Copie este link:\n\n' + linkMessage);
+                }
+            }
+        }
+
         // Função para partilhar evento específico
         function shareEvent(eventText) {
             const eventMessage = `🔔 ${eventText}
@@ -1197,6 +1297,26 @@ Ministério Baixa
                     });
                 } else {
                     alert('📋 Copie esta mensagem:\n\n' + eventMessage);
+                }
+            }
+        }
+
+        // Função para contar down da Santa Ceia
+        function updateSantaCeiaCountdown(now) {
+            const santaCeiaDate = new Date('2025-08-04');
+            const timeDiff = santaCeiaDate - now;
+            const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+            
+            const countdownElement = document.getElementById('santa-ceia-countdown');
+            if (countdownElement) {
+                if (daysLeft > 0) {
+                    countdownElement.textContent = `Em ${daysLeft} dia${daysLeft > 1 ? 's' : ''}`;
+                } else if (daysLeft === 0) {
+                    countdownElement.textContent = 'HOJE!';
+                    countdownElement.style.background = '#FF4500';
+                    countdownElement.style.animation = 'pulse 1s infinite';
+                } else {
+                    countdownElement.textContent = 'Realizado';
                 }
             }
         }
